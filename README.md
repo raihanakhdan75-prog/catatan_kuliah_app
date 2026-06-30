@@ -45,38 +45,75 @@ Aplikasi pencatatan materi perkuliahan berbasis **Flutter** dengan backend **PHP
 
 ---
 
+---
+
+## 📁 Struktur Folder
+
 catatan_kuliah/
 ├── lib/
+│ ├── main.dart
 │ ├── database/
 │ │ └── db_helper.dart
 │ ├── models/
 │ │ └── note.dart
-│ ├── screens/
-│ │ ├── login_screen.dart
-│ │ ├── register_screen.dart
-│ │ ├── main_screen.dart
-│ │ └── main_screen2.dart
-│ └── main.dart
+│ └── screens/
+│ ├── login_screen.dart
+│ ├── register_screen.dart
+│ ├── main_screen.dart
+│ └── main_screen2.dart
 ├── assets/
 │ └── images/
 │ └── logocatatankuliah.png
 ├── android/
 ├── ios/
+├── screenshots/
 ├── pubspec.yaml
 └── README.md
 
 
-2. Install Dependencies
+---
 
+## 🗄️ Database
+
+### Tabel users
+
+| Field | Type | Keterangan |
+|-------|------|------------|
+| id | INT | Primary Key |
+| username | VARCHAR(50) | Nama pengguna |
+| password | VARCHAR(255) | Password |
+| created_at | TIMESTAMP | Waktu registrasi |
+
+### Tabel notes
+
+| Field | Type | Keterangan |
+|-------|------|------------|
+| id | INT | Primary Key |
+| user_id | INT | Foreign Key ke users |
+| mata_kuliah | VARCHAR(100) | Nama mata kuliah |
+| judul | VARCHAR(255) | Judul catatan |
+| materi | TEXT | Isi catatan |
+| tanggal | VARCHAR(20) | Tanggal catatan |
+| kategori | VARCHAR(50) | Teori/Praktikum/Tugas/UTS/UAS |
+
+---
+
+## 📦 Instalasi
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/username/catatan_kuliah.git
+cd catatan_kuliah
+
+2. Install Dependencies
 flutter pub get
 
 3. Setup Database
 Nyalakan XAMPP (Apache + MySQL)
-
+Buka http://localhost/phpmyadmin
 Buat database catatan_kuliah_db
-
-Import file SQL atau jalankan query:
-
+Jalankan query SQL:
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
@@ -98,14 +135,38 @@ CREATE TABLE notes (
 
 4. Setup API
 Copy folder catatan_kuliah_api ke C:\xampp\htdocs\
-
-Pastikan api.php berada di path yang benar
-
+Pastikan file api.php berada di C:\xampp\htdocs\catatan_kuliah_api\api.php
 Sesuaikan koneksi database di api.php
 
 5. Konfigurasi IP
 Buka lib/database/db_helper.dart dan sesuaikan URL:
 static const String baseUrl = 'http://192.168.43.100/catatan_kuliah_api/api.php';
+Catatan: Ganti IP dengan IP laptop/kamu saat terhubung ke hotspot HP.
 
-PROFILE DEV
-[RAIHAN AKHDAN FADHILLAH]	[241091700073]	[04SISP002]
+🚀 Menjalankan Aplikasi
+bash
+# Jalankan di emulator
+flutter run
+# Build APK
+flutter build apk
+# Build APK Release
+flutter build apk --release
+
+👨‍💻 Profil Developer
+Nama	NIM	Kelas
+Raihan Akhdan Fadhillah	241091700073	04SISP002
+
+📄 Lisensi
+Project ini dibuat untuk memenuhi Proyek Akhir Semester mata kuliah Mobile Programming.
+
+© 2026 Raihan Akhdan Fadhillah - All Rights Reserved
+
+---
+
+## 📁 **CARA PAKE:**
+
+1. **Buat file** `README.md` di root project
+2. **Copy paste** kode di atas
+3. **Ganti** `username` di link git clone dengan username GitHub kamu
+4. **Tambahkan folder** `screenshots/` dengan gambar aplikasi
+5. **Push ke GitHub**
